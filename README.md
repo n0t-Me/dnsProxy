@@ -24,6 +24,8 @@ I assume you have node.js and redis already installed if not [this may help you]
 
 4. Start the proxy `npm start` you will need to enter your sudo password since we are using port 53 ( priviliged port )
 
-5. Enjoy (unless it crashes :P)
+5. Change your dns server to your local ip (either on your router if you want to filter the whole network or simply your computer)
+
+6. Enjoy (unless it crashes :P)
 
 If you are using windows you may need to do some modifications you are on your own :)
