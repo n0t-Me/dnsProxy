@@ -39,3 +39,10 @@ Now that everything is set you simply need to change your dns server to your com
 You may probably want the second choice. So what you need to do is go to your router parameters, look for dns server (probably under DHCP conf), change it to your local ip.
 
 However if you want to filter only for your computer, just go to network parameters and change your dns server to `127.0.0.1` (loopback address) or set a new nameserver in /etc/resolv.conf
+
+
+## Metrics
+
+You can see some metrics: amount of domains blocked and top blocked domains (yes that's it)
+
+Just visit [localhost:8080](http://localhost:8080) ( while the proxy is running ofc )
