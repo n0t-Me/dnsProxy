@@ -45,4 +45,4 @@ However if you want to filter only for your computer, just go to network paramet
 
 You can see some metrics: amount of domains blocked and top blocked domains (yes that's it)
 
-Just visit [localhost:8080](http://localhost:8080) ( while the proxy is running ofc )
+Just visit [localhost:8080](http://localhost:8080) it's listening on `any` so just change `localhost` to your server ip to access the page from other devices
