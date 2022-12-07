@@ -22,7 +22,7 @@ I assume you have node.js and redis already installed if not [this may help you]
 
 3. Run the redis server if it's not up
 
-4. Start the proxy `npm start` you will to enter your sudo password since we are using port 53 (priviliged port)
+4. Start the proxy `npm start` you will need to enter your sudo password since we are using port 53 ( priviliged port )
 
 5. Enjoy (unless it crashes :P)
 
