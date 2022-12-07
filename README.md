@@ -1,6 +1,6 @@
 # dnsProxy
 
-A simple project I made to learn some javascript. Inspired from [pi-hole](https://github.com/pi-hole/pi-hole) :P
+A simple project I made to learn some Javascript. Inspired from [pi-hole](https://github.com/pi-hole/pi-hole) :P
 
 ## How it works ?
 
