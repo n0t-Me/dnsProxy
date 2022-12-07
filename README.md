@@ -2,12 +2,28 @@
 
 A simple project I made to learn some javascript. Inspired from [pi-hole](https://github.com/pi-hole/pi-hole) :P
 
+## How it works ?
+
+So it's a simple dns server that take a request forward it to `8.8.8.8` and return the response.
+
+But before forwarding it, it check the domain name that the user want to resolve if it's in the blacklist then block the request by echo-ing it back.
+
+If it wasn't there it forward it normally, I also added some caching to make things a little faster the TTL is 120 sec ( 2 min )
+
+Pretty simple right :D
+
 ## Usage
 
-This is a simple dns proxy by filtering the domains of ads providers you can be free from them :) you just need to add your local ip as a dns server in your router, or if you don't want to filter the whole network just set it as a dns server for your computer here is [how to do it](https://www.google.com)
+I assume you have node.js and redis already installed if not [this may help you](https://www.google.com) :)
 
-Before you start you will need a redis server.
+1. Clone this repo
 
-Install dependencies `npm install` then run `npm start` you need to provide a blacklist file in the project root directory named `blacklist.txt` you can use this [blacklist.txt](https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts)
+2. Install dependencies `npm install`
 
-After that you can see some metrics by visiting [localhost:8080](http://localhost:8080)
+3. Run the redis server if it's not up
+
+4. Start the proxy `npm start` you will to enter your sudo password since we are using port 53 (priviliged port)
+
+5. Enjoy (unless it crashes :P)
+
+If you are using windows you may need to do some modifications you are on your own :)
