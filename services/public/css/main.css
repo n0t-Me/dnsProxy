@@ -1,0 +1,36 @@
+body {
+    background: #222831;
+}
+
+#tot{
+    text-align: center;
+}
+
+#topBar h1 {
+    font-family: 'Trebuchet MS', 'cursive';
+    margin: 20px;
+    color: #00ADB5;
+}
+
+.card {
+    background: #00ADB5;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 20px;
+    box-shadow: 5px 5px 10px #393E46;
+}
+
+.name {
+    color: #222831;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Roboto';
+}
+
+.count {
+    color: #393E46;
+    font-style: italic;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'cursive';
+}
