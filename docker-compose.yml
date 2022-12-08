@@ -1,0 +1,14 @@
+services:
+  dnsproxy:
+    tty: true
+    image: brvh/dnsproxy
+    depends_on:
+      - redis
+    ports:
+      - 53:53/udp
+      - 8080:8080
+  redis:
+    image: redis
+    container_name: dnsproxy-redis
+    environment:
+      - discovery.type=single-node

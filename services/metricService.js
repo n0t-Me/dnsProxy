@@ -1,6 +1,10 @@
 const { createClient } = require('redis');
 const express = require('express');
-const client = createClient();
+
+const client = createClient({
+    url: process.env.YES_ITS_NODE_DOCKER ? 'redis://dnsproxy-redis' : 'redis://localhost'
+});
+
 const signale = require('signale');
 
 class metricServer {

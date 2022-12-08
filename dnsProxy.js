@@ -30,12 +30,6 @@ const signaleOptions = {
 const logger = new Signale(signaleOptions);
 
 class dnsProxy {
-    ip;
-    port;
-    fwdServer;
-    fwdPort;
-    blacklist;
-    client;
 
     constructor(ip, port, blacklist, fwdServer, fwdPort, metricServerPort) {
         this.ip = ip;
@@ -50,7 +44,9 @@ class dnsProxy {
         this.blacklist = new blackList();
         this.blacklist.ropen(blacklist || 'blacklist.txt');
 
-        this.client = createClient();
+        this.client = createClient({
+            url: process.env.YES_ITS_NODE_DOCKER ?'redis://dnsproxy-redis' : 'redis://localhost'
+        });
         this.client.connect();
     }
 
@@ -103,9 +99,6 @@ class dnsProxy {
         });
         this.socket.bind(this.port, this.ip);
         logger.info(`dnsProxy is listening on ${this.ip}:${this.port}`);
-    }
-
-    startMServer() {
         this.mServer.listen();
     }
 }
