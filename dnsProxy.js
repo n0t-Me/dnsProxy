@@ -56,7 +56,7 @@ class dnsProxy {
     async getResponse(req, rinfo) {
         const question = dnsQuestion.getQuestionFromBuffer(req, 12);
         const isIn = await this.blacklist.rcontain(question.QNAME);
-        const log = `${question.QNAME} QTYPE: ${question.QTYPE} from ${rinfo.address}:${rinfo.port}`;
+        const log = `${question.QNAME} from ${rinfo.address}:${rinfo.port}`;
         if ( isIn ) {
             logger.error(log);
             this.client.ZINCRBY("blacklist", 1, question.QNAME);
