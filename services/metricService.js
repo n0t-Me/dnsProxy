@@ -1,6 +1,7 @@
 const { createClient } = require('redis');
 const express = require('express');
 const client = createClient();
+const signale = require('signale');
 
 class metricServer {
     constructor(port) {
@@ -24,7 +25,7 @@ class metricServer {
 
     listen() {
         this.app.listen(this.port, () => {
-            console.log(`metricServer is listening on port: ${this.port}`);
+            signale.info("Metric service listening on: ",this.port);
         });
     }
 }

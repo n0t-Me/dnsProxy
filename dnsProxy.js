@@ -11,6 +11,23 @@ const { dnsForward } = require('./lib/dnsForward.js');
 const { blackList } = require('./lib/blacklist.js');
 const { createClient } = require('redis');
 const { metricServer } = require('./services/metricService.js');
+const { Signale } = require('signale');
+
+
+const signaleOptions = {
+    types: {
+        success: {
+            badge: '++',
+            label: 'Accepted'
+        },
+        error: {
+            badge: '--',
+            label: 'Blocked'
+        }
+    }
+};
+
+const logger = new Signale(signaleOptions);
 
 class dnsProxy {
     ip;
@@ -26,8 +43,8 @@ class dnsProxy {
         this.socket = new dgram.createSocket('udp4');
         this.forwarder = new dnsForward(fwdServer, fwdPort);
         this.mServer = new metricServer(metricServerPort || 8080);
-        this.blacklist = blackList.open(blacklist || 'blacklist.txt');
-        this.blacklist.importToRedis();
+        this.blacklist = new blackList();
+        this.blacklist.ropen(blacklist || 'blacklist.txt');
         this.client = createClient();
         this.client.connect();
     }
@@ -39,12 +56,13 @@ class dnsProxy {
     async getResponse(req, rinfo) {
         const question = dnsQuestion.getQuestionFromBuffer(req, 12);
         const isIn = await this.blacklist.rcontain(question.QNAME);
+        const log = `${question.QNAME} QTYPE: ${question.QTYPE} from ${rinfo.address}:${rinfo.port}`;
         if ( isIn ) {
-            console.log(`[LOG] Blocked ${question.QTYPE} // ${question.QNAME} from ${rinfo.address}:${rinfo.port}`);
+            logger.error(log);
             this.client.ZINCRBY("blacklist", 1, question.QNAME);
             return req;
         }
-        console.log(`[LOG] Accepted ${question.QTYPE} // ${question.QNAME} from ${rinfo.address}:${rinfo.port}`);
+        logger.success(log);
         const {val, isCached} = await this.isCached(question.QNAME);
         if (isCached) {
             return val
