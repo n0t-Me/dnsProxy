@@ -1,5 +1,7 @@
+const name = window.location.toString().split("/")[2].split(":")[0];
+
 function update() {
-    fetch("http://localhost:8080/topBlacklist/10")
+    fetch(`http://${name}:8080/topBlacklist/10`)
     .then(async res => {
         const tops = await res.json();
         if (tops.status === "success" ) {
