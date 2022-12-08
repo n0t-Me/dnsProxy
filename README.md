@@ -12,6 +12,12 @@ If it wasn't there it forward it normally, I also added some caching to make thi
 
 Pretty simple right :D
 
+## Docker
+
+You can set up this proxy very quickly with `docker` just grab the `docker-compose.yml` file and run:
+
+- `docker compose up` (depending on your environment you may need root privs)
+
 ## Setting up the server
 
 I assume you have node.js and redis already installed if not [this may help you](https://www.google.com) :)
