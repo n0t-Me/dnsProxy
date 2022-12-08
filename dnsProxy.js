@@ -97,7 +97,7 @@ class dnsProxy {
                 });//Again just send it back
         });
         this.socket.bind(this.port, this.ip);
-        this.logger.info(`dnsProxy is listening on ${this.ip}:${this.port}`);
+        logger.info(`dnsProxy is listening on ${this.ip}:${this.port}`);
     }
 
     startMServer() {
