@@ -40,11 +40,16 @@ class dnsProxy {
     constructor(ip, port, blacklist, fwdServer, fwdPort, metricServerPort) {
         this.ip = ip;
         this.port = port;
+
         this.socket = new dgram.createSocket('udp4');
+
         this.forwarder = new dnsForward(fwdServer, fwdPort);
+
         this.mServer = new metricServer(metricServerPort || 8080);
+
         this.blacklist = new blackList();
         this.blacklist.ropen(blacklist || 'blacklist.txt');
+
         this.client = createClient();
         this.client.connect();
     }
